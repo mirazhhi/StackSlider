@@ -13,8 +13,7 @@ let mix = require('laravel-mix');
 
 mix.js('src/app.js', 'dist/').sass('src/app.scss', 'dist/');
 // mix.browserSync({
-//     proxy: '192.168.7.90',
-//     server: "src",
+//     server: true
 // });
 
 // Full API
