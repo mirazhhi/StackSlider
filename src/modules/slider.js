@@ -9,64 +9,102 @@ export default class Slider {
         this.paginationList = DOM.querySelectorByClass( 'pagination-list' );
 
         // slide state
-        this.index = false;
+        this.current = false;
         this.count = 0;
+        this.startCountIndex = 0;
+
+        this.lists = [];
     }
 
     listElements () {
         return DOM.findElements( this.slides, 'li' );
     }
 
-    updateState ( el ) {
-        this.index = el;
+    updateCurrentSlide ( el ) {
+        this.current = el;
     }
 
     injectTriggersElement ( el, index ) {
-        el.innerHTML = `<a class="pagination-link is-current" aria-label="Page ` + index + `" aria-current="page">` + index + `</a>`;
-        this.paginationList.appendChild(el);
+        el.innerHTML = `<a class="pagination-link" aria-label="Page ` + index + `" aria-current="page">` + index + `</a>`;
+        this.paginationList.appendChild( el );
     }
 
     bootPagination () {
-        let lists = this.listElements()
+        this.lists = this.listElements()
         this.paginationList.innerHTML = '';
 
         for (let i = 0,
             index = 1,
-            len = lists.length; i < len; i++ , index++) {
+            len = this.lists.length; i < len; i++ , index++) {
 
-            lists[i].setAttribute("id", "index-" + index);
+            this.lists[i].setAttribute("id", "index-" + index);
 
             DOM.createElement("li", index, {
                 "data-index": index,
-            }, this.injectTriggersElement.bind(this));
+            }, this.injectTriggersElement.bind( this ));
         }
     }
 
-    updateSlideShow (prev) {
-        if (!prev) {
-            state.count++;
-        } else {
-            state.count--;
-            console.log(state.count);
+    slideOut ( index ) {
+        console.log(index);
+        let showEl = document.querySelector( "#index-" + index );
+
+        showEl.classList.add( "out" );
+
+        if ( this.current && this.current !== showEl ) {
+            this.current.classList.remove("out");
         }
 
-        let showEl = slideOut(state.count);
-        updateState(showEl);
-        console.log(state.count);
-        if (state.count === 5) {
-            console.log("Room");
-            state.count = 0;
-        } else if (state.count === 1) {
-            console.log("what");
-            state.count = 5;
+        return showEl;
+    };
+
+    updateSlideShow ( prev ) {
+        prev
+            ? this.count-- 
+            : this.count++;
+
+        let showEl = this.slideOut( this.count );
+        this.updateCurrentSlide( showEl );
+
+        if ( this.count === this.startCountIndex ) {
+            this.count = this.lists.length;
+        }
+
+        if ( this.count === this.lists.length ) {
+            this.count = this.startCountIndex;
         }
     };
 
+
+    
+
     run () {
         this.bootPagination()
+        this.updateSlideShow()
+        setInterval( this.updateSlideShow.bind( this ), 3000 );
         // window.addEventListener("load", this.bootPagination);
+
+        this.next.addEventListener("click", (e) => {
+            this.updateSlideShow();
+        });
+
+        this.prev.addEventListener("click", (e) => {
+            this.updateSlideShow(true);
+        });
+
+        this.paginationList.addEventListener("click", (e) => {
+            let target = e.target, index;
+            if (target.tagName !== "a".toUpperCase()) return;
+
+            target.classList.add('is-current');
+            index = target.parentElement.getAttribute("data-index");
+            // DRY
+            let showEl = this.slideOut(index);
+
+            this.updateSlideShow(showEl);
+
+        });
         
         console.log('Slider is Running...')
-        console.log(this.slides);
     }
 }
