@@ -58,3 +58,17 @@
 
 // .prev { left:120px; }
 // .next { left:180px; }
+
+
+.direction-btn {
+    padding-top: 30px;
+
+    .left {
+        float: left;
+    }
+
+    .right {
+        float: right;
+    }
+}
+
