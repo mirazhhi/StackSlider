@@ -1,7 +1,7 @@
 import DOM from './dom';
 
 export default class Pagination {
-    constructor (listContainer, lists, tick) {
+    constructor ( listContainer, lists, tick ) {
         this.listContinaer = listContainer;
         this.lists = lists;
         this.tick = tick;
@@ -9,37 +9,37 @@ export default class Pagination {
         this.oldTarget = null;
     }
 
-    injectTriggersElement(el, index) {
+    injectTriggersElement ( el, index ) {
         el.innerHTML = `<a class="pagination-link" aria-label="Page ` + index + `" aria-current="page">` + index + `</a>`;
-        this.listContinaer.appendChild(el);
+        this.listContinaer.appendChild( el );
     }
 
-    bootPagination() {
+    bootPagination () {
         this.listContinaer.innerHTML = '';
 
         for (let i = 0,
             index = 1,
             len = this.lists.length; i < len; i++ , index++) {
 
-            this.lists[i].setAttribute("id", "index-" + index);
+            this.lists[i].setAttribute('id', 'index-' + index);
 
-            DOM.createElement("li", index, {
-                "data-index": index,
-            }, this.injectTriggersElement.bind(this));
+            DOM.createElement('li', index, {
+                'data-index': index,
+            }, this.injectTriggersElement.bind( this ));
         }
     }
 
-    paginationAction (e) {
+    paginationAction ( e ) {
         let target = e.target, index;
 
-        if (target.tagName !== "a".toUpperCase()) return;
+        if ( target.tagName !== "a".toUpperCase() ) return;
 
-        target.classList.add('is-current');
-        index = target.parentElement.getAttribute("data-index");
+        target.classList.add( 'is-current' );
+        index = target.parentElement.getAttribute( 'data-index' );
 
-        if (this.oldTarget && this.oldTarget !== target) this.oldTarget.classList.remove('is-current');
+        if ( this.oldTarget && this.oldTarget !== target ) this.oldTarget.classList.remove( 'is-current' );
+        
         this.oldTarget = target
-
         this.tick.slideTick( index ).updateCurrentSlide();
     }
 }

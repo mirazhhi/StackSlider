@@ -11,8 +11,8 @@ export default class Slider {
         this.paginationList = DOM.querySelectorByClass( 'pagination-list' );
 
         this.lists = this.listElements();
-        this.tick = new Tick(this.lists);
-        this.pagination = new Pagination(this.paginationList, this.lists, this.tick);
+        this.tick = new Tick( this.lists );
+        this.pagination = new Pagination( this.paginationList, this.lists, this.tick );
     }
 
     listElements () {
@@ -26,19 +26,19 @@ export default class Slider {
 
         setInterval( this.tick.updateSlideShow.bind(this.tick), 3000 );
 
-        this.next.addEventListener("click", (e) => {
+        this.next.addEventListener('click', ( e ) => {
             // remove setInterval
             this.tick.updateSlideShow();
         });
 
-        this.prev.addEventListener("click", (e) => {
+        this.prev.addEventListener('click', ( e ) => {
             // remove setInterval
             this.tick.updateSlideShow(true);
         });
 
-        this.paginationList.addEventListener("click", (e) => {
+        this.paginationList.addEventListener('click', ( e ) => {
             let event = e || event;
-            this.pagination.paginationAction(event);
+            this.pagination.paginationAction( event );
         });
 
         console.log('Slider is Running...')
