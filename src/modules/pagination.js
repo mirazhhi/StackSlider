@@ -1,12 +1,21 @@
+import DOM from './dom';
+
 export default class Pagination {
+    constructor (listContainer, lists, tick) {
+        this.listContinaer = listContainer;
+        this.lists = lists;
+        this.tick = tick;
+
+        this.oldTarget = null;
+    }
+
     injectTriggersElement(el, index) {
         el.innerHTML = `<a class="pagination-link" aria-label="Page ` + index + `" aria-current="page">` + index + `</a>`;
-        this.paginationList.appendChild(el);
+        this.listContinaer.appendChild(el);
     }
 
     bootPagination() {
-        this.lists = this.listElements()
-        this.paginationList.innerHTML = '';
+        this.listContinaer.innerHTML = '';
 
         for (let i = 0,
             index = 1,
@@ -20,17 +29,17 @@ export default class Pagination {
         }
     }
 
-
-    this.paginationList.addEventListener("click", (e) => {
+    paginationAction (e) {
         let target = e.target, index;
+
         if (target.tagName !== "a".toUpperCase()) return;
 
         target.classList.add('is-current');
         index = target.parentElement.getAttribute("data-index");
-        // DRY
-        let showEl = this.slideOut(index);
 
-        this.updateSlideShow(showEl);
+        if (this.oldTarget && this.oldTarget !== target) this.oldTarget.classList.remove('is-current');
+        this.oldTarget = target
 
-    });
+        this.tick.slideTick( index ).updateCurrentSlide();
+    }
 }

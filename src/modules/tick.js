@@ -1,48 +1,47 @@
 export default class Tick {
-    constructor () {
-
-        // slide state
+    constructor ( lists ) {
         this.current = false;
         this.count = 0;
         this.startCountIndex = 0;
 
-        this.lists = [];
+        this.lists = lists;
+
+        this.showElement;
     }
 
-
-    updateCurrentSlide(el) {
-        this.current = el;
+    updateCurrentSlide( el ) {
+        this.current = this.showElement;
     }
 
-    slideOut(index) {
+    slideTick( index ) {
 
-        let showEl = document.querySelector("#index-" + index);
+        this.showElement = document.querySelector( "#index-" + index );
 
-        showEl.classList.add("out");
+        this.showElement.classList.add( "out" );
 
-        if (this.current && this.current !== showEl) {
-            this.current.classList.remove("out");
+        if ( this.current && this.current !== this.showElement ) {
+            this.current.classList.remove( "out" );
         }
 
-        return showEl;
+        return this;
     };
 
-    updateSlideShow(prev) {
+    updateSlideShow ( prev ) {
         prev
             ? this.count--
             : this.count++;
 
         this.setCounter();
-        let showEl = this.slideOut(this.count);
-        this.updateCurrentSlide(showEl);
+
+        this.slideTick( this.count ).updateCurrentSlide();
     };
 
-    setCounter() {
-        if (this.count === this.startCountIndex) {
+    setCounter () {
+        if ( this.count === this.startCountIndex ) {
             return this.count = this.lists.length;
         }
 
-        if (this.count === this.lists.length) {
+        if ( this.count === this.lists.length ) {
             return this.count = this.startCountIndex;
         }
     }

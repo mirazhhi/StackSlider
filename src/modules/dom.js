@@ -1,4 +1,4 @@
-export default class QueryDOM {
+export default class DOM {
     static querySelectorByClass ( className ) {
         return window.document.getElementsByClassName( className )[0];
     }
