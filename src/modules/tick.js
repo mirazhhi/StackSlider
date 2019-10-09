@@ -5,15 +5,14 @@ export default class Tick {
         this.startCountIndex = 0;
 
         this.lists = lists;
-
         this.showElement;
     }
 
-    updateCurrentSlide( el ) {
+    updateCurrentSlide () {
         this.current = this.showElement;
     }
 
-    slideTick( index ) {
+    slideTick ( index ) {
 
         this.showElement = document.querySelector( "#index-" + index );
 

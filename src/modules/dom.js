@@ -9,16 +9,16 @@ export default class DOM {
 
 
     static createElement ( name, index, options, action ) {
-        if (!(name || options)) return;
+        if ( !(name || options) ) return;
 
-        let el = document.createElement(name);
+        let el = document.createElement( name );
 
-        if (options) {
-            for (let key in options) {
-                el.setAttribute(key, options[key]);
+        if ( options ) {
+            for ( let key in options ) {
+                el.setAttribute( key, options[key] );
             }
         }
 
-        action(el, index);
+        action( el, index );
     };
 }
