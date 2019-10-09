@@ -1,9 +1,9 @@
 ## StackSlider
 
-Обычный слайдер на чистом javascript без зависимостей
+Обычный слайдер на чистом javascript без зависимостей.
 Сборка проекта происходит с использованием [laravel-mix](https://laravel-mix.com/)
 
-## Installation
+## Установка
 
 Для запуска проекта понадобиться [NPM](https://www.npmjs.com/)
 
@@ -15,11 +15,11 @@
 
     cd app/ && npm install
 
-запускаем в нужном режиме
+Запускаем в нужном режиме
 
-    npm run production or npm run dev or npm run watch
+    npm run production | npm run dev | npm run watch
 
-## License
+## Лицензия
 
 [MIT](https://github.com/Mhiggster/stackSlider/blob/master/LICENSE)
 
