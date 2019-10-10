@@ -1,22 +1,6 @@
 // Bulma
 @import "~bulma/bulma.sass";
 
-// body { 
-//     background-color:#000; 
-//     position:relative; 
-//     font-size:14px; 
-//     font-family:arial;
-// }
-
-
-
-
-// ul.images {
-//     position:relative; 
-//     top:0px;
-//     left:0px;
-// }
-
 .images {
     li {
         display: none;
@@ -25,40 +9,6 @@
         }
     }
 }
-
-// ul.images li
-// ul.triggers {
-//     position:absolute; 
-//     top:310px; 
-//     left:80px; 
-// }
-    
-// ul.triggers li { 
-//     float:left; 
-//     margin:0 5px; 
-//     font: bold 16px arial; 
-//     cursor:pointer;
-//     background-color:#ccc;
-//     color:#000; 
-//     padding:10px;
-// }
-
-// ul.triggers li.selected {
-//     background-color:red;
-//     color:#000;
-// }
-
-
-// .control {
-//     position:absolute; 
-//     top: 380px; 
-//     color:#fff; 
-//     cursor:pointer;
-// }
-
-// .prev { left:120px; }
-// .next { left:180px; }
-
 
 .direction-btn {
     padding-top: 30px;
