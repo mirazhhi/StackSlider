@@ -9,7 +9,7 @@
 
 Клонируем репозиторий
 
-    git clone https://github.com/Mhiggster/stackSlider.git app
+    git clone https://github.com/Mhiggster/StackSlider.git app
 
 Переходим в проект и устанавливаем
 
@@ -21,6 +21,6 @@
 
 ## Лицензия
 
-[MIT](https://github.com/Mhiggster/stackSlider/blob/master/LICENSE)
+[MIT](https://github.com/Mhiggster/StackSlider/blob/master/LICENSE)
 
 Copyright (c) 2019-present, Miras Nurmukhanbetov
