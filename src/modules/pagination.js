@@ -6,6 +6,13 @@ import DOM from './dom';
  * @class Pagination
  */
 export default class Pagination {
+    /**
+     * Creates an instance of Pagination.
+     * @param {*} listContainer
+     * @param {*} lists
+     * @param {*} tick
+     * @memberof Pagination
+     */
     constructor ( listContainer, lists, tick ) {
         this.listContinaer = listContainer;
         this.lists = lists;
@@ -14,11 +21,23 @@ export default class Pagination {
         this.oldTarget = null;
     }
 
+    /**
+     * Render pagination items
+     *
+     * @param {*} el
+     * @param {*} index
+     * @memberof Pagination
+     */
     injectTriggersElement ( el, index ) {
         el.innerHTML = `<a class="pagination-link" aria-label="Page ` + index + `" aria-current="page">` + index + `</a>`;
         this.listContinaer.appendChild( el );
     }
 
+    /**
+     * Load Pagination Instance
+     *
+     * @memberof Pagination
+     */
     bootPagination () {
         this.listContinaer.innerHTML = '';
 
@@ -34,6 +53,13 @@ export default class Pagination {
         }
     }
 
+    /**
+     * 
+     *
+     * @param {*} e
+     * @returns
+     * @memberof Pagination
+     */
     paginationAction ( e ) {
         if (typeof e === 'object') {
 

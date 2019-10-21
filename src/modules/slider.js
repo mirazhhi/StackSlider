@@ -8,6 +8,10 @@ import Tick from './tick';
  * @class Slider
  */
 export default class Slider {
+    /**
+     *Creates an instance of Slider.
+     * @memberof Slider
+     */
     constructor () {
         this.slides = DOM.querySelectorByClass( 'slides' );
         this.pagination = DOM.querySelectorByClass( 'pagination' );
@@ -20,10 +24,21 @@ export default class Slider {
         this.pagination = new Pagination( this.paginationList, this.lists, this.tick );
     }
 
+    /**
+     * Query List elements
+     *
+     * @returns
+     * @memberof Slider
+     */
     listElements () {
         return DOM.findElements( this.slides, 'li' );
     }
 
+    /**
+     * Run the Application
+     *
+     * @memberof Slider
+     */
     run () {
         this.listElements();
         this.pagination.bootPagination();

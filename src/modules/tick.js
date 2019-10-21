@@ -7,6 +7,11 @@ import Pagination from './pagination';
  * @class Tick
  */
 export default class Tick {
+    /**
+     * Creates an instance of Tick.
+     * @param {*} lists
+     * @memberof Tick
+     */
     constructor ( lists ) {
         this.current = false;
         this.count = 0;
@@ -18,10 +23,22 @@ export default class Tick {
         this.pagination = new Pagination
     }
 
+    /**
+     * Update Current Slide
+     *
+     * @memberof Tick
+     */
     updateCurrentSlide () {
         this.current = this.showElement;
     }
 
+    /**
+     * Tick Action
+     *
+     * @param {*} index
+     * @returns
+     * @memberof Tick
+     */
     slideTick ( index ) {
 
         this.showElement = document.querySelector( "#index-" + index );
@@ -35,6 +52,12 @@ export default class Tick {
         return this;
     };
 
+    /**
+     * Update slide Show Scenes
+     *
+     * @param {*} prev
+     * @memberof Tick
+     */
     updateSlideShow ( prev ) {
         prev
             ? this.count--
@@ -48,6 +71,12 @@ export default class Tick {
         this.pagination.paginationAction(this.count);
     };
 
+    /**
+     * Setting Counter index
+     *
+     * @returns
+     * @memberof Tick
+     */
     setCounter () {
         if ( this.count === this.startCountIndex ) {
             return this.count = this.lists.length;
