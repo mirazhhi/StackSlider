@@ -1,3 +1,11 @@
+import Pagination from './pagination';
+
+/**
+ * Tick
+ *
+ * @export
+ * @class Tick
+ */
 export default class Tick {
     constructor ( lists ) {
         this.current = false;
@@ -6,6 +14,8 @@ export default class Tick {
 
         this.lists = lists;
         this.showElement;
+
+        this.pagination = new Pagination
     }
 
     updateCurrentSlide () {
@@ -33,6 +43,9 @@ export default class Tick {
         this.setCounter();
 
         this.slideTick( this.count ).updateCurrentSlide();
+
+        // we need update the pagination blocks
+        this.pagination.paginationAction(this.count);
     };
 
     setCounter () {

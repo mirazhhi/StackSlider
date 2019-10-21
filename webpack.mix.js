@@ -12,9 +12,12 @@ let mix = require('laravel-mix');
  */
 
 mix.js('src/app.js', 'dist/').sass('src/app.scss', 'dist/');
-// mix.browserSync({
-//     server: true
-// });
+mix.browserSync({
+    proxy: false,
+    server: {
+        baseDir: './'
+    }
+});
 
 // Full API
 // mix.js(src, output);

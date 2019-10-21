@@ -1,7 +1,12 @@
 import DOM from './dom';
 import Pagination from './pagination';
 import Tick from './tick';
-
+/**
+ * Slider Rendering
+ *
+ * @export
+ * @class Slider
+ */
 export default class Slider {
     constructor () {
         this.slides = DOM.querySelectorByClass( 'slides' );

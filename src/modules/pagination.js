@@ -1,5 +1,10 @@
 import DOM from './dom';
-
+/**
+ * Pagination
+ *
+ * @export
+ * @class Pagination
+ */
 export default class Pagination {
     constructor ( listContainer, lists, tick ) {
         this.listContinaer = listContainer;
@@ -30,7 +35,11 @@ export default class Pagination {
     }
 
     paginationAction ( e ) {
-        let target = e.target, index;
+        if (typeof e === 'object') {
+
+            // continue write is herer
+            let target = e.target, index;
+        }
 
         if ( target.tagName !== "a".toUpperCase() ) return;
 
