@@ -62,19 +62,23 @@ export default class Pagination {
      */
     paginationAction ( e ) {
         if (typeof e === 'object') {
+            if (target.tagName !== "a".toUpperCase()) return;
 
-            // continue write is herer
-            let target = e.target, index;
+            target.classList.add('is-current');
+            index = target.parentElement.getAttribute('data-index');
+
+            if (this.oldTarget && this.oldTarget !== target) this.oldTarget.classList.remove('is-current');
+
+            this.oldTarget = target
+            this.tick.slideTick(index).updateCurrentSlide();
         }
 
-        if ( target.tagName !== "a".toUpperCase() ) return;
+        if (typeof e === 'number') {
+            DOM.querySelectorByClass('pagination-list').querySelector(`[data-index="${e}"] a`).classList.add('is-current');
 
-        target.classList.add( 'is-current' );
-        index = target.parentElement.getAttribute( 'data-index' );
+            if (this.oldTarget && this.oldTarget !== e) DOM.querySelectorByClass('pagination-list').querySelector(`[data-index="${this.oldTarget}"] a`).classList.remove('is-current');
 
-        if ( this.oldTarget && this.oldTarget !== target ) this.oldTarget.classList.remove( 'is-current' );
-        
-        this.oldTarget = target
-        this.tick.slideTick( index ).updateCurrentSlide();
+            this.oldTarget = e
+        }
     }
 }
